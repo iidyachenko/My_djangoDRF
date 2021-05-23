@@ -19,10 +19,13 @@ from rest_framework.routers import DefaultRouter
 
 from authors.views import AuthorModelViewSet
 from site_users.views import UserModelViewSet
+from to_do.views import ProjectModelViewSet, ToDoModelViewSet
 
 router = DefaultRouter()
 router.register('authors', AuthorModelViewSet)
 router.register('users', UserModelViewSet)
+router.register('project', ProjectModelViewSet)
+router.register('todo', ToDoModelViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
