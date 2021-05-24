@@ -19,7 +19,7 @@ from rest_framework.routers import DefaultRouter
 
 from authors.views import AuthorModelViewSet
 from site_users.views import UserModelViewSet
-from to_do.views import ProjectModelViewSet, ToDoModelViewSet
+from to_do.views import ProjectModelViewSet, ToDoModelViewSet, ProjectAPIVIew
 
 router = DefaultRouter()
 router.register('authors', AuthorModelViewSet)
@@ -31,4 +31,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
+    path('views/api-view/', ProjectAPIVIew.as_view()),
 ]

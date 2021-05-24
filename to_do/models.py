@@ -15,5 +15,6 @@ class ToDo(models.Model):
     created = models.DateTimeField(verbose_name='создан', auto_now_add=True)
     updated = models.DateTimeField(verbose_name='обновлен', auto_now=True)
     user = models.ForeignKey(SUser, on_delete=models.CASCADE, verbose_name="Создатель")
+    is_active = models.BooleanField(default=True, verbose_name='активно')
 
 
