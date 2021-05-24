@@ -5,12 +5,16 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from to_do.filters import ProjectFilter
+from to_do.filters import ProjectFilter, ToDoFilter
 from to_do.models import Project, ToDo
 from to_do.serializers import ProjectSerializer, ToDoSerializer
 
 
 class ProjectPaginator(PageNumberPagination):
+    page_size = 10
+
+
+class ToDoPaginator(PageNumberPagination):
     page_size = 10
 
 
@@ -24,7 +28,8 @@ class ProjectModelViewSet(ModelViewSet):
 class ToDoModelViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
-    filterset_fields = ['project']
+    filterset_class = ToDoFilter
+    pagination_class = ToDoPaginator
 
     def destroy(self, request, *args, **kwargs):
         todo = self.get_object()
