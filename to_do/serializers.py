@@ -6,7 +6,7 @@ from to_do.models import Project, ToDo
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    users = serializers.PrimaryKeyRelatedField(many=True, queryset=SUser.objects.all())
+    users = serializers.SlugRelatedField(many=True, queryset=SUser.objects.all(), slug_field='email')
 
     class Meta:
         model = Project
@@ -14,7 +14,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class ToDoSerializer(serializers.ModelSerializer):
-    project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all())
+    project = serializers.SlugRelatedField(queryset=Project.objects.all(), slug_field='name')
     user = serializers.PrimaryKeyRelatedField(queryset=SUser.objects.all())
 
     class Meta:
